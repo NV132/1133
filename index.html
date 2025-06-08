@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대보험 - 홈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+  <header>
+    <div class="logo">김현대 보험</div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <canvas id="particleCanvas"></canvas>
+      <div>
+        <h1>당신의 미래를 위한 보험</h1>
+        <p>김현대 보험설계사와 함께 맞춤형 보험으로 안심하세요.</p>
+        <a href="appointment.html" class="cta-button">지금 상담 예약</a>
+      </div>
+    </section>
+
+    <section class="vcard">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="김현대 보험설계사">
+      <div class="vcard-content">
+        <h2>김현대</h2>
+        <h3>수석 보험설계사</h3>
+        <div class="vcard-item"><i class="fas fa-phone"></i><span>010-1234-5678</span></div>
+        <div class="vcard-item"><i class="fas fa-envelope"></i><span>kim@hyundai-ins.com</span></div>
+        <div class="vcard-item"><i class="fas fa-map-marker-alt"></i><span>서울 강남구 테헤란로 99</span></div>
+        <div class="vcard-item"><i class="fas fa-clock"></i><span>평일 09:00 - 18:00</span></div>
+        <div class="vcard-social">
+          <a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+          <a href="https://kakao.com/channel" target="_blank" rel="noopener"><i class="fas fa-comment"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comment"></i>
+  </div>
+  <aside class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>김현대 보험 챗봇</h3>
+      <i class="fas fa-times chatbot-close" onclick="toggleChatbot()"></i>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <div class="chatbot-message bot">안녕하세요! 궁금한 점을 말씀해 주세요. 예: 가입, 해지, 보험료</div>
+    </div>
+    <div class="chatbot-input">
+      <form onsubmit="handleChatbotSubmit(event)">
+        <input type="text" id="chatbotInput" placeholder="질문을 입력하세요..." required>
+        <button type="submit" title="메시지 전송"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </aside>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html" class="nav-item"><i class="fas fa-briefcase"></i><span>보험상품</span></a>
+    <a href="appointment.html" class="nav-item"><i class="fas fa-calendar-check"></i><span>상담예약</span></a>
+    <a href="faq.html" class="nav-item"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
+  </nav>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.error('Service Worker Error:', err));
+    }
+  </script>
+</body>
+</html>

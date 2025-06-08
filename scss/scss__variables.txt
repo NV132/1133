@@ -1,0 +1,9 @@
+$primary-color: #1e88e5;
+$secondary-color: #bbdefb;
+$bg-dark: #121212;
+$text-light: #ffffff;
+$text-muted: #b0bec5;
+$card-bg: #1e1e1e;
+$shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+$transition: all 0.3s ease;
+$border-radius: 12px;

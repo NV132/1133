@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대보험 - FAQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+  <header>
+    <div class="logo">김현대 보험</div>
+  </header>
+
+  <main>
+    <section id="faq" class="faq">
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-search">
+        <input type="text" id="faqSearch" placeholder="궁금한 점을 검색하세요...">
+        <button onclick="searchFAQ()">검색</button>
+      </div>
+      <div id="faqList">
+        <article class="faq-item">
+          <div class="faq-question">보험 가입 절차는 어떻게 되나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">온라인 또는 전화 상담 예약 후, 김현대 설계사가 맞춤형 상품을 안내드립니다. 서류 제출 후 가입 완료까지 약 3일 소요됩니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">보험료 납부 방법은 어떤 것들이 있나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">은행 계좌이체, 신용카드, 모바일 결제(카카오페이 등)를 지원합니다. 매월 자동 납부 설정을 추천드립니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">보험 해지는 어떻게 하나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">김현대 설계사(010-1234-5678) 또는 이메일(kim@hyundai-ins.com)로 연락 주시면 해지 절차를 안내드립니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">건강보험의 보장 범위는 어디까지인가요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">입원, 수술, 중대질병 진단비, 건강검진 등을 포함합니다. 상세 보장은 상품 페이지에서 확인 가능합니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">자동차보험 사고 처리 시간은 얼마나 걸리나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">사고 접수 후 24시간 내 출동하며, 처리 완료까지 평균 3~7일 소요됩니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">여행보험은 언제 가입해야 하나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">여행 출발 전 가입이 필수입니다. 출발 당일 가입 시 일부 보장이 제한될 수 있습니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">주택보험은 어떤 손해를 보장하나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">화재, 도난, 자연재해, 가구 손실 등을 보장합니다. 상세 보장은 상품 페이지에서 확인하세요.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">보험료는 어떻게 산정되나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">나이, 건강 상태, 운전 경력, 주거 환경 등에 따라 산정됩니다. 상담 시 정확한 견적을 제공드립니다.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">가족 보험 할인 혜택이 있나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">건강보험 및 주택보험 가족 동시 가입 시 10% 할인, 자동차보험 다차량 가입 시 추가 혜택 제공.</div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-question">보험금 청구는 어떻게 하나요?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">사고 또는 손해 발생 후 김현대 설계사에게 연락 주시면 필요 서류를 안내드립니다. 평균 5일 내 지급됩니다.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comment"></i>
+  </div>
+  <aside class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>김현대 보험 챗봇</h3>
+      <i class="fas fa-times chatbot-close" onclick="toggleChatbot()"></i>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <div class="chatbot-message bot">안녕하세요! 궁금한 점을 말씀해 주세요. 예: 가입, 해지, 보험료</div>
+    </div>
+    <div class="chatbot-input">
+      <form onsubmit="handleChatbotSubmit(event)">
+        <input type="text" id="chatbotInput" placeholder="질문을 입력하세요..." required>
+        <button type="submit" title="메시지 전송"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </aside>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html" class="nav-item"><i class="fas fa-briefcase"></i><span>보험상품</span></a>
+    <a href="appointment.html" class="nav-item"><i class="fas fa-calendar-check"></i><span>상담예약</span></a>
+    <a href="faq.html" class="nav-item active"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
+  </nav>
+
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.error('Service Worker Error:', err));
+    }
+  </script>
+</body>
+</html>
