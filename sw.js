@@ -1,6 +1,6 @@
 const CACHE_NAME = 'hyundai-insurance-v1';
 const urlsToCache = [
-  '/index.html',
+  '/1133/index.html',
   '/products.html',
   '/appointment.html',
   '/faq.html',
