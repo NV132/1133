@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대보험 - 상담예약</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+  <header>
+    <div class="logo">김현대 보험</div>
+  </header>
+
+  <main>
+    <section id="appointment" class="appointment">
+      <h2>상담 예약</h2>
+      <form class="appointment-form">
+        <div class="form-group">
+          <label for="name">성함</label>
+          <input type="text" id="name" placeholder="성함" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">전화번호</label>
+          <input type="tel" id="phone" placeholder="전화번호" required>
+        </div>
+        <div class="form-group">
+          <label for="date">예약 날짜</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="type">상담 유형</label>
+          <select id="type" required>
+            <option value="">상담 유형 선택</option>
+            <option value="health">건강보험</option>
+            <option value="car">자동차보험</option>
+            <option value="travel">여행보험</option>
+            <option value="home">주택보험</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">상담 요청 내용</label>
+          <textarea id="message" placeholder="상담 요청 내용" rows="5" required></textarea>
+        </div>
+        <div class="form-buttons">
+          <button type="submit" title="상담 예약하기">예약하기</button>
+          <button type="button" class="kakao" title="카카오톡으로 상담하기" onclick="window.open('https://kakao.com/channel', '_blank')">카카오톡 상담</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comment"></i>
+  </div>
+  <aside class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>김현대 보험 챗봇</h3>
+      <i class="fas fa-times chatbot-close" onclick="toggleChatbot()"></i>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <div class="chatbot-message bot">안녕하세요! 궁금한 점을 말씀해 주세요. 예: 가입, 해지, 보험료</div>
+    </div>
+    <div class="chatbot-input">
+      <form onsubmit="handleChatbotSubmit(event)">
+        <input type="text" id="chatbotInput" placeholder="질문을 입력하세요..." required>
+        <button type="submit" title="메시지 전송"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </aside>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html" class="nav-item"><i class="fas fa-briefcase"></i><span>보험상품</span></a>
+    <a href="appointment.html" class="nav-item active"><i class="fas fa-calendar-check"></i><span>상담예약</span></a>
+    <a href="faq.html" class="nav-item"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
+  </nav>
+
+  <div id="installBanner" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e88e5;color:#fff;padding:1rem 2rem;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.2);z-index:3000;align-items:center;gap:1rem;">
+    <span style="font-weight:700;">앱 설치하고 더 편리하게 이용하세요!</span>
+    <button id="installBtn" style="background:#fff;color:#1e88e5;font-weight:700;padding:0.5rem 1.2rem;border:none;border-radius:8px;cursor:pointer;">설치</button>
+    <button id="closeInstallBanner" style="background:none;color:#fff;font-size:1.2rem;border:none;cursor:pointer;margin-left:0.5rem;">✕</button>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.error('Service Worker Error:', err));
+    }
+
+    let deferredPrompt;
+    const installBanner = document.getElementById('installBanner');
+    const installBtn = document.getElementById('installBtn');
+    const closeInstallBanner = document.getElementById('closeInstallBanner');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = 'flex';
+    });
+
+    installBtn && installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installBanner.style.display = 'none';
+        }
+        deferredPrompt = null;
+      }
+    });
+
+    closeInstallBanner && closeInstallBanner.addEventListener('click', () => {
+      installBanner.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
